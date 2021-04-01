@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
-import backgroundImg from '../../assets/backgroundImg.jpg';
+import cadastroBackgroundImg from '../../assets/cadastroBackgroundImg.jpg';
 
 export const Container = styled.div`
   height: 100vh; //100% do viewport, da tela visivel do usuário
@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const Background = styled.div`
   flex: 1; //todo o espaço menos os 700px acima. flexível
-  background: url(${backgroundImg}) no-repeat center;
+  background: url(${cadastroBackgroundImg}) no-repeat center;
   background-size: cover; //cobrir o tamanho do que tem sobrando
 `;
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
-import { Container, Content, Background } from './styles';
-import logo from '../../assets/logoacai.svg';
+import { Container, Content, Background, Img } from './styles';
+import logors from '../../assets/logors.png';
+import logoacai from '../../assets/logoacai.svg';
 import Button from '../../components/button/index';
 import Input from '../../components/input/index';
 
 const LogIn: React.FC = () => (
   <Container>
     <Content>
-      <img src={logo} alt="AcaiApp" />
+      <img src={logoacai} alt="AcaiApp" />
       <form>
         <h1>VAMOS PEDIR?</h1>
 
@@ -29,6 +30,7 @@ const LogIn: React.FC = () => (
         <FiLogIn />
         Criar conta
       </a>
+      <Img src={logors} alt="developer" />
     </Content>
     <Background />
   </Container>
