@@ -9,28 +9,43 @@ import logoacai from '../../assets/logoacai.svg';
 import Button from '../../components/button/index';
 import Input from '../../components/input/index';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { useAuth } from '../../hooks/authContext';
 
-const LogIn: React.FC = () => {
+interface SignInFormData {
+  email: string;
+  password: string;
+}
+
+const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: Record<string, unknown>) => {
-    try {
-      // zerar os erros
-      formRef.current?.setErrors({});
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('O e-mail é obrigatório!')
-          .email('Digite um e-mail válido!'),
-        password: Yup.string().required('Senha obrigatória!'),
-      });
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      const errors = getValidationErrors(err);
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+  const { signIn } = useAuth();
+
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        // zerar os erros
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('O e-mail é obrigatório!')
+            .email('Digite um e-mail válido!'),
+          password: Yup.string().required('Senha obrigatória!'),
+        });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+        signIn({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (err) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [signIn],
+  );
 
   return (
     <Container>
@@ -63,4 +78,4 @@ const LogIn: React.FC = () => {
   );
 };
 
-export default LogIn;
+export default SignIn;
