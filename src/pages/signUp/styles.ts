@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import cadastroBackgroundImg from '../../assets/cadastroBackgroundImg.jpg';
 
@@ -22,6 +22,26 @@ export const Content = styled.div`
 
   width: 100%;
   max-width: 700px;
+`;
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  animation: ${appearFromRight} 1s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   form {
     margin: 80px 0;
@@ -67,5 +87,9 @@ export const Img = styled.img`
   margin-top: 20px;
   width: 42px;
   height: 42px;
-  border-radius: 50px;
+`;
+export const ImgLogo = styled.img`
+  margin-top: 20px;
+  width: 300px;
+  height: 300px;
 `;

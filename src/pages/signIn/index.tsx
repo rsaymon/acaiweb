@@ -3,8 +3,16 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
-import { Container, Content, Background, Img } from './styles';
+import {
+  Container,
+  Content,
+  Background,
+  Img,
+  ImgLogo,
+  AnimationContainer,
+} from './styles';
 import logors from '../../assets/logors.png';
 import logoacai from '../../assets/logoacai.svg';
 import Button from '../../components/Button/index';
@@ -46,6 +54,7 @@ const SignIn: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
+          return;
         }
         addToast({
           type: 'error',
@@ -60,28 +69,30 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Content>
-        <img src={logoacai} alt="AcaiApp" />
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>VAMOS PEDIR?</h1>
+        <AnimationContainer>
+          <ImgLogo src={logoacai} alt="AcaiApp" />
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>VAMOS PEDIR?</h1>
 
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-          <Input
-            name="password"
-            type="password"
-            icon={FiLock}
-            placeholder="Senha"
-          />
+            <Input
+              name="password"
+              type="password"
+              icon={FiLock}
+              placeholder="Senha"
+            />
 
-          <Button type="submit">ENTRAR</Button>
+            <Button type="submit">ENTRAR</Button>
 
-          <a href="forgot">Esqueci minha senha</a>
-        </Form>
-        <a href="login">
-          <FiLogIn />
-          Criar conta
-        </a>
-        <Img src={logors} alt="developer" />
+            <a href="forgot">Esqueci minha senha</a>
+          </Form>
+          <Link to="/signup">
+            <FiLogIn />
+            Criar conta
+          </Link>
+          <Img src={logors} alt="developer" />
+        </AnimationContainer>
       </Content>
       <Background />
     </Container>
