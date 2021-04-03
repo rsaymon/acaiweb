@@ -6,8 +6,8 @@ import * as Yup from 'yup';
 import { Container, Content, Background, Img } from './styles';
 import logors from '../../assets/logors.png';
 import logoacai from '../../assets/logoacai.svg';
-import Button from '../../components/button/index';
-import Input from '../../components/input/index';
+import Button from '../../components/Button/index';
+import Input from '../../components/Input/index';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 const SignUp: React.FC = () => {
